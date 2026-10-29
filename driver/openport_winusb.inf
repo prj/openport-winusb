@@ -1,0 +1,44 @@
+; WinUSB binding for the OpenPort 2.0. No kernel code of ours: winusb.sys is inbox.
+
+[Version]
+Signature   = "$Windows NT$"
+Class       = USBDevice
+ClassGuid   = {88BAE032-5A81-49f0-BC3D-A4FF138216D6}
+Provider    = %Provider%
+CatalogFile = openport_winusb.cat
+DriverVer   = 10/29/2026,1.0.0.0
+PnpLockdown = 1
+
+[Manufacturer]
+%Provider% = OpenPort,NTamd64,NTx86,NTarm64
+
+[OpenPort.NTamd64]
+%DeviceName% = USB_Install, USB\VID_0403&PID_CC4D
+%DeviceName% = USB_Install, USB\VID_0403&PID_CC4C&MI_00
+
+[OpenPort.NTx86]
+%DeviceName% = USB_Install, USB\VID_0403&PID_CC4D
+%DeviceName% = USB_Install, USB\VID_0403&PID_CC4C&MI_00
+
+[OpenPort.NTarm64]
+%DeviceName% = USB_Install, USB\VID_0403&PID_CC4D
+%DeviceName% = USB_Install, USB\VID_0403&PID_CC4C&MI_00
+
+[USB_Install]
+Include = winusb.inf
+Needs   = WINUSB.NT
+
+[USB_Install.Services]
+Include = winusb.inf
+Needs   = WINUSB.NT.Services
+
+[USB_Install.HW]
+AddReg = Dev_AddReg
+
+[Dev_AddReg]
+; The openport.sys interface GUID: the original op20pt32.dll finds the device by it.
+HKR,,DeviceInterfaceGUIDs,0x10000,"{6D1781B7-C987-4F6C-8D4F-1EFC098BEA67}"
+
+[Strings]
+Provider   = "VehiCAL"
+DeviceName = "OpenPort 2.0 J2534 (WinUSB)"

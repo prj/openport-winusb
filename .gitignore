@@ -1,0 +1,24 @@
+# Published: source, installer and build tooling. Reverse-engineering, test and bench tools stay local.
+re/
+tools/*
+!tools/sign.ps1
+driver/ab.ps1
+driver/register.ps1
+driver/switch.ps1
+
+installer/stage/
+installer/build.log*
+*.exe
+*.obj
+*.lib
+*.exp
+*.dll
+*.pdb
+*.ilk
+*.map
+*.res
+*.cat
+*.log
+*.out
+*.err
+*.txt
